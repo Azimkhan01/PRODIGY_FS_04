@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    overflow: hidden;
+}
+
+.chat-container {
+    width: 90%;
+    max-width: 500px;
+    height: 80vh;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    padding: 15px;
+    background: linear-gradient(135deg, #ffffff 0%, #f7f7f7 100%);
+    border: 2px solid #e0e0e0;
+}
+
+/* Join notification styles */
+.join-notification {
+    background: #ffeb3b;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 10px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: none; /* Show dynamically */
+    animation: slideDown 0.5s ease-in-out forwards;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Chat box styles */
+.chat-box {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    scrollbar-width: none; /* For Firefox */
+    position: relative;
+}
+
+.chat-box::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+}
+
+/* Message styles */
+.message {
+    margin: 12px 0;
+    padding: 12px 15px;
+    border-radius: 15px;
+    max-width: 75%;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.message:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Received messages */
+.message.received {
+    background: #e1f5fe;
+    align-self: flex-start;
+    margin-right: auto; /* Align to the left */
+    animation: slideInLeft 0.5s ease-in-out;
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Sent messages */
+.message.sent {
+    background: #c8e6c9;
+    align-self: flex-end;
+    margin-left: auto; /* Align to the right */
+    animation: slideInRight 0.5s ease-in-out;
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.message .name {
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+}
+
+.message p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.time {
+    font-size: 12px;
+    color: #757575;
+    position: absolute;
+    bottom: -15px;
+    right: 10px;
+}
+
+/* Message input styles */
+.message-input {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #e0e0e0;
+    background: #fafafa;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.message-input input {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    font-size: 14px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.message-input input:focus {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.message-input button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #4caf50, #81c784);
+    color: #ffffff;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.message-input button:hover {
+    background: linear-gradient(135deg, #388e3c, #66bb6a);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+}
+
+.message-input button:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+    .chat-container {
+        height: 70vh;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .message {
+        max-width: 90%;
+    }
+
+    .message-input {
+        padding: 10px;
+    }
+
+    .message-input input {
+        font-size: 12px;
+    }
+
+    .message-input button {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+}
